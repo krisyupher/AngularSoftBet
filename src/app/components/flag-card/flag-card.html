@@ -1,1 +1,20 @@
-<p>flag-card works!</p>
+@if (country) {
+  <div class="flag-card">
+    <img [src]="country.flags.png" [alt]="country.name.common" class="flag-image" />
+    <div class="country-info">
+      <h2>{{ country.name.common }}</h2>
+      @if (country.capital) {
+        <p><strong>Capital:</strong> {{ country.capital.join(', ') }}</p>
+      }
+      @if (country.region) {
+        <p><strong>Region:</strong> {{ country.region }}</p>
+      }
+      @if (country.subregion) {
+        <p><strong>Sub-region:</strong> {{ country.subregion }}</p>
+      }
+      @if (country.population) {
+        <p><strong>Population:</strong> {{ country.population | number }}</p>
+      }
+    </div>
+  </div>
+}

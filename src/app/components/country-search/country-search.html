@@ -1,0 +1,45 @@
+<div class="search-container">
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Enter country name..."
+      [(ngModel)]="searchQuery"
+      (keyup)="onKeyup($event)"
+      class="search-input"
+    />
+    <button (click)="search()" class="search-button" [disabled]="isLoading()">
+      @if (isLoading()) {
+        Searching...
+      } @else {
+        Search
+      }
+    </button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="error-message">{{ errorMessage() }}</div>
+  }
+
+  @if (selectedCountry()) {
+    <app-flag-card [country]="selectedCountry()"></app-flag-card>
+  }
+
+  @if (countries().length > 1) {
+    <div class="country-list">
+      <h3>Other matches:</h3>
+      <div class="list-items">
+        @for (country of countries(); track country.name.common) {
+          @if (selectedCountry() && country.name.common !== selectedCountry()!.name.common) {
+            <button
+              class="list-item"
+              (click)="selectCountry(country)"
+            >
+              <img [src]="country.flags.png" [alt]="country.name.common" class="list-flag" />
+              {{ country.name.common }}
+            </button>
+          }
+        }
+      </div>
+    </div>
+  }
+</div>
