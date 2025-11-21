@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { FlagCard } from './components/flag-card/flag-card';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  imports: [FlagCard],
 })
 export class App {
-  protected readonly title = signal('AngularSoftBet asd');
+  protected readonly title = 'AngularSoftBet asd';
 }
